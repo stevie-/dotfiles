@@ -123,13 +123,15 @@ bindkey '[C' forward-word
 bindkey '[D' backward-word
 
 # brew pyenv
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+if [[ $(command -v pyenv) ]]; then
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/Users/stevie/.rd/bin:$PATH"
+export PATH="$HOME/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
 autoload -U +X bashcompinit && bashcompinit
