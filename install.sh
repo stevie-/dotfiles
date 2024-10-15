@@ -3,7 +3,7 @@
 set -e
 
 # Some checks to see if we are running in dev containers
-if [ -n "${CODESPACES}" ]; then
+if [ -n "${CODESPACES}" ] || [ -n "${REMOTE_CONTAINERS}" ]; then
   export RUNNING_IN_DEV_CONTAINER=1
 fi
 
