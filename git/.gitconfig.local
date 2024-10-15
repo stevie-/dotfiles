@@ -2,7 +2,3 @@
 #    name = GITNAME
 #    email = GITEMAIL
 #    signingkey = GITSIGNKEY
-
-# Use git+ssh instead of https
-[url "git@github.com:"]
-insteadOf = "https://github.com/"
