@@ -18,7 +18,3 @@ prune = true
 gpgsign = true
 [init]
 defaultBranch = main
-
-# Use git+ssh instead of https
-[url "git@github.com:"]
-insteadOf = "https://github.com/"
