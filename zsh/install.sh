@@ -5,4 +5,4 @@ set -e
 echo "🚀 zsh installation"
 
 ln -sf "${PWD}/zsh/.zshrc" "${HOME}/.zshrc"
-ln -sf "${PWD}/zsh/benmatselby.zsh-theme" "${HOME}/.oh-my-zsh/custom/themes/"
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k

@@ -1,13 +1,10 @@
 # IDEs
 .idea
-.vscode
-*.code-workspace
 *.swp
-*.sublime-project
-*.sublime-workspace
 
 # OS
 .DS_Store
 
 # Tools
 .husky/post-commit
+

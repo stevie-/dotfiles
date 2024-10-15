@@ -1,24 +1,24 @@
 [include]
-  path = ~/.gitconfig.local
+path = ~/.gitconfig.local
 
-[alias]
-  ignored = !git ls-files -v | grep "^[[:lower:]]"
-[core]
-  excludesfile = ~/.gitignore
-[color]
-  ui = true
-[diff]
-  compactionHeuristic = true
-  noprefix = true
-[fetch]
-  prune = true
-[gpg]
-  format = ssh
-[init]
-  defaultBranch = main
-[pull]
-  ff = only
-[safe]
-  directory = *
 [user]
-  name = Ben Selby
+# Please adapt and uncomment the following lines:
+name = Steffen Tautenhahn
+email = stevie-@users.noreply.github.com
+signingkey = 18BA6478196A2A15
+[pull]
+rebase = true
+[rebase]
+autoStash = true
+[push]
+default = current
+[fetch]
+prune = true
+[commit]
+gpgsign = true
+[init]
+defaultBranch = main
+
+# Use git+ssh instead of https
+[url "git@github.com:"]
+insteadOf = "https://github.com/"

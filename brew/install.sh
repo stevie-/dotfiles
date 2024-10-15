@@ -13,62 +13,71 @@ fi
 echo "🚀 Installing brew packages"
 
 # Taps
-brew tap hashicorp/tap
 
 BASE_PACKAGES=(
-  ag
+  amazon-ecs-cli
+  autojump
+  aws-iam-authenticator
+  aws-sam-cli
   awscli
-  bash
-  composer
-  cowsay
+  azure-cli
+  base64
+  bat
+  cloud-nuke
+  commitizen
+  coreutils
   fzf
   gh
   git
-  glow
   gnupg
   go
-  golangci-lint
-  gron
+  helm
   htop
-  hugo
+  hub
+  infracost
+  ipcalc
   jq
-  k6
   k9s
-  kubectl
   kubectx
-  kube-ps1
-  lazydocker
-  mongosh
-  mysql-client
+  kubernetes-cli
   neovim
-  nvm
-  php
+  nmap
+  node
+  nodeenv
+  openjdk
+  parallel
+  pipx
+  pre-commit
+  pyenv
+  pyenv-virtualenv
+  python@3.10
+  readline
+  ruby
   shellcheck
-  starship
-  tldr
-  tmux
-  tmuxinator
-  # vim
+  shfmt
+  tenv
+  terraform-docs
+  tflint
+  tfsec
+  tig
+  tree
+  watch
+  wget
+  yq
+  zsh-completions
+  zsh-syntax-highlightin
 )
 
-if [ "$(arch)" = "arm64" ]; then
-  BASE_PACKAGES+=(
-    pyenv
-    reattach-to-user-namespace
-    hashicorp/tap/terraform
-    terragrunt
-    tflint
-  )
-fi
+# if [ "$(arch)" = "arm64" ]; then
+#   BASE_PACKAGES+=(
+#   )
+# fi
 
 for pkg in "${BASE_PACKAGES[@]}"; do printf "installing %s\n" "${pkg}" && brew install "${pkg}"; done
 
 # Casks (only on Mac)
-if [ "$(arch)" = "arm64" ]; then
-  brew install --cask font-fira-code
-  brew install --cask font-hack-nerd-font
-  # brew install --cask session-manager-plugin
-fi
+# if [ "$(arch)" = "arm64" ]; then
+# fi
 
 # Some tidying up
 brew autoremove -v

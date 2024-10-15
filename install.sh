@@ -23,8 +23,6 @@ fi
 ###
 if [ -z "${RUNNING_IN_DEV_CONTAINER}" ]; then
   ./brew/install.sh
-  ./vscode/install.sh
-  ./zed/install.sh
 fi
 
 ###
@@ -32,20 +30,12 @@ fi
 ###
 if [ -z "${RUNNING_IN_DEV_CONTAINER}" ]; then
   ./github/install.sh
-  ./node/install.sh
-  ./mongodb/install.sh
+  # ./node/install.sh
+  # ./mongodb/install.sh
   ./k9s/install.sh
-  ./starship/install.sh
-  ./tmux/install.sh
   ./neovim/install.sh
 fi
 
-###
-# Deprecated
-###
-#./sublime-text/install.sh
-#./php/install.sh
-#./vim/install.sh
 
 ###
 # Manual notifications
