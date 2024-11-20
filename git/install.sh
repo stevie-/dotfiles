@@ -23,7 +23,8 @@ echo "🚀 git configuration"
 
 # on local machine, use git+ssh instead of https with ssh-agent
 if [ ! -f "${HOME}/.gitconfig" ] && [ -z "${RUNNING_IN_DEV_CONTAINER}" ]; then
-cat << EOF >> "${PWD}/git/.gitconfig.local"
+  ln -sf "${PWD}/git/.gitconfig" "${HOME}/.gitconfig"
+  cat <<EOF >>"${PWD}/git/.gitconfig.local"
 
 # Use git+ssh instead of https
 [url "git@github.com:"]
@@ -32,5 +33,6 @@ insteadOf = "https://github.com/"
 EOF
 fi
 
-ln -sf "${PWD}/git/.gitconfig" "${HOME}/.gitconfig"
-ln -sf "${PWD}/git/.gitignore" "${HOME}/.gitignore"
+if [ ! -f "${HOME}/.gitignore" ]; then
+  ln -sf "${PWD}/git/.gitignore" "${HOME}/.gitignore"
+fi

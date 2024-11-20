@@ -131,7 +131,7 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="$HOME/.rd/bin:$PATH"
+[[ $HOME == "/Users/stevie" ]] && export PATH="$HOME/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
 autoload -U +X bashcompinit && bashcompinit
