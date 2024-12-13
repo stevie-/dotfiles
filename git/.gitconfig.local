@@ -1,4 +1,13 @@
-#[user]
-#    name = GITNAME
-#    email = GITEMAIL
-#    signingkey = GITSIGNKEY
+[user]
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICqX85wtmah+xHvF5r7crepp0LQunTPa/zAdsZUM4kkE
+  name = Steffen Tautenhahn
+  email = stevie-@users.noreply.github.com
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[commit]
+  gpgsign = true

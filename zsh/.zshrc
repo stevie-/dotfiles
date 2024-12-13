@@ -130,9 +130,11 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+if [[ $HOME == "/Users/stevie" ]]; then
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-[[ $HOME == "/Users/stevie" ]] && export PATH="$HOME/.rd/bin:$PATH"
+export PATH="/Users/stevie/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+fi
 
 autoload -U +X bashcompinit && bashcompinit
 

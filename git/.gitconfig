@@ -1,11 +1,6 @@
 [include]
 path = ~/.gitconfig.local
 
-[user]
-# Please adapt and uncomment the following lines:
-name = Steffen Tautenhahn
-email = stevie-@users.noreply.github.com
-signingkey = 18BA6478196A2A15
 [pull]
 rebase = true
 [rebase]
@@ -14,7 +9,5 @@ autoStash = true
 default = current
 [fetch]
 prune = true
-[commit]
-gpgsign = true
 [init]
 defaultBranch = main
