@@ -1,13 +1,34 @@
 [include]
 path = ~/.gitconfig.local
-
-[pull]
-rebase = true
-[rebase]
-autoStash = true
-[push]
-default = current
+[branch]
+sort = -committerdate
+[column]
+ui = auto
+[diff]
+algorithm = histogram
+colorMoved = plain
+mnemonicPrefix = true
+renames = true
 [fetch]
 prune = true
+pruneTags = true
+all = true
+[help]
+autocorrect = prompt
 [init]
 defaultBranch = main
+[pull]
+rebase = true
+[push]
+default = current
+autoSetupRemote = true
+followTags = true
+[rebase]
+autoStash = true
+autoSqash = true
+updateRefs = true
+[rerere]
+enabled = true
+autoupdate = true
+[tag]
+sort = version:refname

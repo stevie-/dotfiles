@@ -75,7 +75,7 @@ HIST_STAMPS="dd/mm/yyyy"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(alias-finder autojump aws brew docker fzf gcloud git github golang helm iterm2 kubectl pip terraform urltools virtualenv vscode kube-ps1)
+plugins=(alias-finder autojump aws brew docker fzf gcloud git github golang helm iterm2 kubectl pip pyenv terraform urltools vscode kube-ps1)
 
 source $ZSH/oh-my-zsh.sh
 
