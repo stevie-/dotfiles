@@ -31,3 +31,7 @@ fi
 if [ ! -f "${HOME}/.gitignore" ]; then
   ln -sf "${PWD}/git/.gitignore" "${HOME}/.gitignore"
 fi
+
+mkdir -p "${HOME}/.dotfiles/git"
+# Create symlink for git-helpers
+ln -sf "${PWD}/git/git-helpers.zsh" "${HOME}/.dotfiles/git/git-helpers.zsh"

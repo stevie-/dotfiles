@@ -141,4 +141,6 @@ autoload -U +X bashcompinit && bashcompinit
 export TENV_AUTO_INSTALL=false
 export TOFUENV_AUTO_INSTALL=false
 export TG_TF_PATH=terraform
-export PATH=$PATH:$HOME/.local/bin
+
+# custom git helpers
+[ -f "${HOME}/.dotfiles/git/git-helpers.zsh" ] && source "${HOME}/.dotfiles/git/git-helpers.zsh"

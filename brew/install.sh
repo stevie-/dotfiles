@@ -23,8 +23,6 @@ BASE_PACKAGES=(
   azure-cli
   base64
   bat
-  cloud-nuke
-  commitizen
   coreutils
   fzf
   gh
@@ -34,7 +32,6 @@ BASE_PACKAGES=(
   helm
   htop
   hub
-  infracost
   ipcalc
   jq
   k9s
@@ -44,15 +41,12 @@ BASE_PACKAGES=(
   nmap
   node
   nodeenv
-  openjdk
   parallel
   pipx
   pre-commit
   pyenv
   pyenv-virtualenv
-  python@3.10
   readline
-  ruby
   shellcheck
   shfmt
   tenv
@@ -65,7 +59,7 @@ BASE_PACKAGES=(
   wget
   yq
   zsh-completions
-  zsh-syntax-highlightin
+  zsh-syntax-highlighting
 )
 
 # if [ "$(arch)" = "arm64" ]; then
