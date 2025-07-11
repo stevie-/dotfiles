@@ -140,4 +140,5 @@ autoload -U +X bashcompinit && bashcompinit
 
 export TENV_AUTO_INSTALL=false
 export TOFUENV_AUTO_INSTALL=false
-export TERRAGRUNT_TFPATH=terraform
+export TG_TF_PATH=terraform
+export PATH=$PATH:$HOME/.local/bin
