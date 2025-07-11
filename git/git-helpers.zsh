@@ -41,27 +41,31 @@ git-clone-organized() {
   local host owner repo
 
   if [[ "$url" == git@*:* ]]; then
-    # git@host:owner/repo.git
+    # git@github.com:owner/repo[.git]
     host=$(echo "$url" | sed -E 's#git@([^:]+):.*#\1#')
-    owner=$(echo "$url" | sed -E 's#git@[^:]+:([^/]+)/.*#\1#')
-    repo=$(echo "$url" | sed -E 's#git@[^:]+:[^/]+/([^/]+)\.git#\1#')
-  elif [[ "$url" == ssh://git@* ]]; then
-    # ssh://git@host:port/owner/repo.git
-    host=$(echo "$url" | sed -E 's#ssh://git@([^:/]+):[0-9]+/.*#\1#')
-    owner=$(echo "$url" | sed -E 's#ssh://git@[^:/]+:[0-9]+/([^/]+)/.*#\1#')
-    repo=$(echo "$url" | sed -E 's#ssh://git@[^:/]+:[0-9]+/[^/]+/([^/]+)\.git#\1#')
+    owner=$(echo "$url" | sed -E 's#git@[^:]+:([^/]+).*#\1#')
+    repo=$(echo "$url" | sed -E 's#git@[^:]+:[^/]+/([^/.]+).*#\1#')
   elif [[ "$url" == ssh://* ]]; then
-    # ssh://host:port/owner/repo.git (ohne Benutzername)
-    host=$(echo "$url" | sed -E 's#ssh://([^:/]+):[0-9]+/.*#\1#')
-    owner=$(echo "$url" | sed -E 's#ssh://[^:/]+:[0-9]+/([^/]+)/.*#\1#')
-    repo=$(echo "$url" | sed -E 's#ssh://[^:/]+:[0-9]+/[^/]+/([^/]+)\.git#\1#')
+    # ssh://[git@]host[:port]/owner/repo[.git]
+    host=$(echo "$url" | sed -E 's#ssh://(?:git@)?([^:/]+)(?::[0-9]+)?/.*#\1#')
+    owner=$(echo "$url" | sed -E 's#ssh://(?:git@)?[^:/]+(?::[0-9]+)?/([^/]+).*#\1#')
+    repo=$(echo "$url" | sed -E 's#ssh://(?:git@)?[^:/]+(?::[0-9]+)?/[^/]+/([^/.]+).*#\1#')
   elif [[ "$url" == http*://* ]]; then
-    # https://host/owner/repo.git
+    # https://host/owner/repo[.git]
     host=$(echo "$url" | sed -E 's#https?://([^/]+)/.*#\1#')
-    owner=$(echo "$url" | sed -E 's#https?://[^/]+/([^/]+)/.*#\1#')
-    repo=$(echo "$url" | sed -E 's#https?://[^/]+/[^/]+/([^/]+)\.git#\1#')
+    owner=$(echo "$url" | sed -E 's#https?://[^/]+/([^/]+).*#\1#')
+    repo=$(echo "$url" | sed -E 's#https?://[^/]+/[^/]+/([^/.]+).*#\1#')
   else
     echo "Unrecognized URL format: $url"
+    return 1
+  fi
+
+  # Validation
+  if [[ -z "$host" || -z "$owner" || -z "$repo" ]]; then
+    echo "Failed to parse URL components:"
+    echo "Host: $host"
+    echo "Owner: $owner"
+    echo "Repo: $repo"
     return 1
   fi
 
