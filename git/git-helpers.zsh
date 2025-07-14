@@ -34,7 +34,7 @@ EOL
 }
 
 git-clone-organized() {
-  local basepath="$HOME/Projects/git"
+  local basepath="$HOME/Documents/Projects/git"
   local url="$1"
 
   if [[ -z "$url" ]]; then
