@@ -2,48 +2,56 @@
 
 set -e
 
-# Some checks to see if we are running in dev containers
+# Component definitions
+DEFAULT_COMPONENTS="omz zsh git"
+DEV_COMPONENTS="brew github k9s neovim"
+ALL_COMPONENTS="$DEFAULT_COMPONENTS $DEV_COMPONENTS"
+
+# Check if running in dev containers
 if [ -n "${CODESPACES}" ] || [ -n "${REMOTE_CONTAINERS}" ]; then
   export RUNNING_IN_DEV_CONTAINER=1
-fi
-
-if [ -n "${RUNNING_IN_DEV_CONTAINER}" ]; then
   echo "🏃 Running in dev container"
 fi
 
-###
-# Installation
-###
-./omz/install.sh
-./zsh/install.sh
-./git/install.sh
+# Function to install specific component
+install_component() {
+    # Check if component exists
+    echo "$ALL_COMPONENTS" | grep -w -q "$1" || {
+        echo "❌ Unknown component: $1"
+        exit 1
+    }
 
-###
-# Applications (Only when not in a dev container)
-###
-if [ -z "${RUNNING_IN_DEV_CONTAINER}" ]; then
-  ./brew/install.sh
+    # Install based on component type
+    if echo "$DEFAULT_COMPONENTS" | grep -w -q "$1"; then
+        "./$1/install.sh"
+    elif echo "$DEV_COMPONENTS" | grep -w -q "$1"; then
+        [ -z "${RUNNING_IN_DEV_CONTAINER}" ] && "./$1/install.sh"
+    fi
+}
+
+# Install components
+if [ $# -eq 0 ]; then
+    # Install default components
+    for component in $DEFAULT_COMPONENTS; do
+        install_component "$component"
+    done
+
+    # Install dev components if not in container
+    if [ -z "${RUNNING_IN_DEV_CONTAINER}" ]; then
+        for component in $DEV_COMPONENTS; do
+            install_component "$component"
+        done
+    fi
+else
+    # Install specific components
+    for component in "$@"; do
+        install_component "$component"
+    done
 fi
 
-###
-# Application configurations (Only when not in a dev container)
-###
-if [ -z "${RUNNING_IN_DEV_CONTAINER}" ]; then
-  ./github/install.sh
-  # ./node/install.sh
-  # ./mongodb/install.sh
-  ./k9s/install.sh
-  ./neovim/install.sh
-fi
-
-
-###
 # Manual notifications
-###
 echo "🚀 Manual installation/updates"
-echo "Omz: omz update"
+echo "OMZ: omz update"
 echo ""
-
 echo "🚀 Suggestions to tidy"
-echo "- Old node versions: nvm list"
 echo "- ~/Library/Appliation Support"

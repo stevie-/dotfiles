@@ -7,21 +7,25 @@ create-githost-gitconfig() {
     echo "Creating parent gitconfig at $githost_config_file"
     cat >"$githost_config_file" <<EOL
 # githost-specific git configuration
-# This file is automatically included by global gitconfig
+# This file is automatically included by local gitowner gitconfig (double include starting at repo level)
+# Uncomment and modify if you want different user settings for this scope
 [user]
-    # Uncomment and modify if you want different user settings for this scope
     #signingkey =
     #name = Your Name
     #email = your.email@example.com
 EOL
   fi
+
   if [[ ! -f "$gitowner_config_file" ]]; then
     echo "Creating parent gitconfig at $gitowner_config_file"
     cat >"$gitowner_config_file" <<EOL
 # githost-specific git configuration
-# This file is automatically included by global gitconfig
+# This file is automatically included by local (repo) gitconfig
+[include]
+  path = ../gitconfig
+
+# Uncomment and modify if you want different user settings for this scope
 [user]
-    # Uncomment and modify if you want different user settings for this scope
     #signingkey =
     #name = Your Name
     #email = your.email@example.com
@@ -75,4 +79,15 @@ git-clone-organized() {
   mkdir -p "$target_dir"
   git clone "$url" "$target_dir"
   (cd "$target_dir" && create-githost-gitconfig)
+
+  local config_file="$target_dir/.git/config"
+  local include_path="../../gitconfig"
+
+  # check if Include exists in config
+  if ! grep -q "\[include\]" "$config_file"; then
+    echo "" >>"$config_file"
+    echo "[include]" >>"$config_file"
+    echo "    path = $include_path" >>"$config_file"
+    echo "Added include to $config_file"
+  fi
 }
