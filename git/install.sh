@@ -35,3 +35,9 @@ fi
 mkdir -p "${HOME}/.dotfiles/git"
 # Create symlink for git-helpers
 ln -sf "${PWD}/git/git-helpers.zsh" "${HOME}/.dotfiles/git/git-helpers.zsh"
+
+# add github config defaults
+if [ -z "${RUNNING_IN_DEV_CONTAINER}" ]; then
+  mkdir -p "${HOME}/Documents/Projects/git/github.com"
+  ln -sf "${PWD}/git/.gitconfig.github" "${HOME}/Documents/Projects/git/github.com/gitconfig"
+fi
