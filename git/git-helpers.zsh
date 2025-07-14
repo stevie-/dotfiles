@@ -51,9 +51,9 @@ git-clone-organized() {
     repo=$(echo "$url" | sed -E 's#git@[^:]+:[^/]+/([^/.]+).*#\1#')
   elif [[ "$url" == ssh://* ]]; then
     # ssh://[git@]host[:port]/owner/repo[.git]
-    host=$(echo "$url" | sed -E 's#ssh://([^@/]+@)?([^:/]+).*#\2#')
-    owner=$(echo "$url" | sed -E 's#ssh://([^@/]+@)?[^:/]+:[0-9]+/([^/]+).*#\2#')
-    repo=$(echo "$url" | sed -E 's#ssh://([^@/]+@)?[^:/]+:[0-9]+/[^/]+/([^/.]+).*#\2#')
+    host=$(echo "$url" | sed -E 's#ssh://([^@/]+@)?([^:]+).*#\2#')
+    owner=$(echo "$url" | sed -E 's#ssh://([^@/]+@)?[^:]+:[0-9]+/([^/]+).*#\2#')
+    repo=$(echo "$url" | sed -E 's#ssh://([^@/]+@)?[^:]+:[0-9]+/[^/]+/([^/.]+).*#\2#')
   elif [[ "$url" == http*://* ]]; then
     # https://host/owner/repo[.git]
     host=$(echo "$url" | sed -E 's#https?://([^/]+)/.*#\1#')
