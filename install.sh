@@ -4,7 +4,7 @@ set -e
 
 # Component definitions
 DEFAULT_COMPONENTS="omz zsh git"
-DEV_COMPONENTS="brew github k9s neovim"
+DEV_COMPONENTS="brew github k9s neovim ai"
 ALL_COMPONENTS="$DEFAULT_COMPONENTS $DEV_COMPONENTS"
 
 # Check if running in dev containers
