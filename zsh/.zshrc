@@ -145,3 +145,7 @@ export TG_TF_PATH
 
 # custom git helpers
 [ -f "${HOME}/.dotfiles/git/git-helpers.zsh" ] && source "${HOME}/.dotfiles/git/git-helpers.zsh"
+
+# vscode shell integration
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
+
