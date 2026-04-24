@@ -81,6 +81,9 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# Keep PATH unique while preserving first occurrence order.
+typeset -U path PATH
+
 # brew installed VS CODE
 path+=("/Applications/Visual Studio Code.app/Contents/Resources/app/bin")
 # brew installed MYSQL
@@ -122,12 +125,6 @@ path+=("$HOME/.local/bin")
 bindkey '[C' forward-word
 bindkey '[D' backward-word
 
-# brew pyenv
-if [[ $(command -v pyenv) ]]; then
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
-fi
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 if [[ $HOME == "/Users/stevie" ]]; then
@@ -147,5 +144,6 @@ export TG_TF_PATH
 [ -f "${HOME}/.dotfiles/git/git-helpers.zsh" ] && source "${HOME}/.dotfiles/git/git-helpers.zsh"
 
 # vscode shell integration
-[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
-
+if [[ "$TERM_PROGRAM" == "vscode" ]]; then
+  . "$(code --locate-shell-integration-path zsh)"
+fi
