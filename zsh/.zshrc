@@ -151,3 +151,8 @@ export TG_TF_PATH
 if [[ "$TERM_PROGRAM" == "vscode" ]]; then
   . "$(code --locate-shell-integration-path zsh)"
 fi
+
+fpath+=~/.zfunc; autoload -Uz compinit; compinit
+
+zstyle ':completion:*' menu select
+[ -f "${HOME}/.safe-chain/scripts/init-posix.sh" ] && source "${HOME}/.safe-chain/scripts/init-posix.sh" # Safe-chain Zsh initialization script
