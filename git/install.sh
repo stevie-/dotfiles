@@ -35,6 +35,9 @@ fi
 mkdir -p "${HOME}/.dotfiles/git"
 # Create symlink for git-helpers
 ln -sf "${PWD}/git/git-helpers.zsh" "${HOME}/.dotfiles/git/git-helpers.zsh"
+# make reclone_large_repos.sh script available in path
+ln -sf "${PWD}/git/reclone_large_repos.sh" "/usr/local/bin/reclone_large_repos.sh"
+
 
 # add github config defaults
 if [ -z "${RUNNING_IN_DEV_CONTAINER}" ]; then
